@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +17,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float horiz = Input.GetAxis("Horizontal");
+        float vertic = Input.GetAxis("Vertical");
+
+        Vector2 direction = new Vector2(horiz, vertic);
+        transform.Translate(direction * speed * Time.deltaTime);
+
         pos = Input.mousePosition;
         pos = Camera.main.ScreenToWorldPoint(pos);
 
@@ -29,6 +34,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
     }
 }
