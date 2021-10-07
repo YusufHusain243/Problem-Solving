@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float minX, maxX, minY, maxY;
     Vector2 pos;
+    public Text scoreText;
+    int score;
 
     // Start is called before the first frame update
     void Start()
     {
         pos = transform.position;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -30,6 +34,7 @@ public class PlayerController : MonoBehaviour
             InputMouse();
         }
 
+        scoreText.text = score.ToString();
     }
 
     void InputMouse() 
@@ -44,6 +49,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Object")
+        {
+            score += 1;
         }
     }
 }
