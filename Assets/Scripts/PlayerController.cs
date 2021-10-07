@@ -20,20 +20,30 @@ public class PlayerController : MonoBehaviour
         float horiz = Input.GetAxis("Horizontal");
         float vertic = Input.GetAxis("Vertical");
 
-        Vector2 direction = new Vector2(horiz, vertic);
-        transform.Translate(direction * speed * Time.deltaTime);
+        if(horiz != 0 || vertic != 0)
+        {
+            Vector2 direction = new Vector2(horiz, vertic);
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
+        else if(horiz == 0 || vertic == 0)
+        {
+            InputMouse();
+        }
 
+    }
+
+    void InputMouse() 
+    {
         pos = Input.mousePosition;
         pos = Camera.main.ScreenToWorldPoint(pos);
 
         if (pos.x > minX && pos.x < maxX && pos.y > minY && pos.y < maxY)
         {
-            transform.position = Vector3.Lerp(transform.position, pos, speed * Time.deltaTime);
+            transform.Translate(pos * speed * Time.deltaTime);
         }
         else
         {
             return;
         }
-
     }
 }
