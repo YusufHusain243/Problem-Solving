@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (pos.x > minX && pos.x < maxX && pos.y > minY && pos.y < maxY)
         {
-            transform.Translate(pos * speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, pos, speed * Time.deltaTime);
         }
         else
         {
