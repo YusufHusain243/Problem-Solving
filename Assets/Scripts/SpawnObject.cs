@@ -10,18 +10,25 @@ public class SpawnObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int gameObjectAmount = Random.Range(0, 10);
-        for (int i = 0; i < gameObjectAmount; i++)
-        {
-            float randomX = Random.Range(minX, maxX);
-            float randomY = Random.Range(minY, maxY);
-            Instantiate(gameObject, new Vector2(randomX, randomY), Quaternion.identity);
-        }
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator Spawn()
+    {
+        int gameObjectAmount = Random.Range(0, 5);
+        for (int i = 0; i < gameObjectAmount; i++)
+        {
+            float randomX = Random.Range(minX, maxX);
+            float randomY = Random.Range(minY, maxY);
+            Instantiate(gameObject, new Vector2(randomX, randomY), Quaternion.identity);
+        }
+        yield return new WaitForSeconds(3);
+        StartCoroutine(Spawn());
     }
 }
