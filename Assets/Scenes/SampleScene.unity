@@ -607,7 +607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  rb: {fileID: 1296628078}
+  minX: -8.87
+  maxX: 8.87
+  minY: -4.98
+  maxY: 4.98
 --- !u!50 &1296628078
 Rigidbody2D:
   serializedVersion: 4
