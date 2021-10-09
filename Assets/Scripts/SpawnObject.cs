@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnObject : MonoBehaviour
 {
-    public GameObject gameObject;
+    public GameObject[] gameObject;
     public float minX, maxX, minY, maxY;
 
     // Start is called before the first frame update
@@ -26,7 +26,10 @@ public class SpawnObject : MonoBehaviour
         {
             float randomX = Random.Range(minX, maxX);
             float randomY = Random.Range(minY, maxY);
-            Instantiate(gameObject, new Vector2(randomX, randomY), Quaternion.identity);
+
+            int randomObject = Random.Range(0, gameObject.Length);
+
+            Instantiate(gameObject[randomObject], new Vector2(randomX, randomY), Quaternion.identity);
         }
         yield return new WaitForSeconds(3);
         StartCoroutine(Spawn());
